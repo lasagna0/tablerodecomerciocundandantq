@@ -4,16 +4,21 @@ import pandas as pd
 import plotly.express as px
 #aggrid para streamlit
 from st_aggrid import AgGrid
-
+import os 
 #wide
 st.set_page_config(layout="wide")
 
 @st.cache_data
 def load_data():
-    importacionesantpath="datos requeridos\dfimportacionesantfiltered.parquet"
-    exportacionesantpath="datos requeridos\dfexportacionesantfiltered.parquet"
-    importacionescundpath="datos requeridos\dfimportacionescundfiltered.parquet"
-    exportacionescundpath="datos requeridos\dfexportacionescundfiltered.parquet"
+    folder="datos requeridos"
+    pathfolder=os.getcwd()
+    pathfolder=os.path.join(pathfolder,folder)
+    os.chdir(pathfolder)
+
+    importacionesantpath=os.path.join(pathfolder,"dfimportacionesantfiltered.parquet")
+    exportacionesantpath=os.path.join(pathfolder,"dfexportacionesantfiltered.parquet")
+    importacionescundpath=os.path.join(pathfolder,"dfimportacionescundfiltered.parquet")
+    exportacionescundpath=os.path.join(pathfolder,"dfexportacionescundfiltered.parquet")
     importacionesant=pd.read_parquet(importacionesantpath)
     exportacionesant=pd.read_parquet(exportacionesantpath)
     importacionescund=pd.read_parquet(importacionescundpath)
