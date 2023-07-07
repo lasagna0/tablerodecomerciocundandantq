@@ -7,7 +7,19 @@ from st_aggrid import AgGrid
 import os 
 #wide
 st.set_page_config(layout="wide")
-
+#hide hamburger menu and footer
+hide_streamlit_style = """
+            <style> 
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            footer:after {
+            content:'PROBARRANQUILLA 2023 - DAVID ALEJANDRO SANCHEZ POLO';
+            visibility: visible;
+            # end of footer
+            }
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 @st.cache_data
 def load_data():
     folder="datos requeridos"
